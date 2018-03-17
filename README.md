@@ -7,7 +7,9 @@ This is a ROS package used to test object manipulation on a physical Baxter usin
 ## Setup
 * Follow this [link](http://wiki.ros.org/ROS/Installation) to install ROS (skip if ROS already installed)
 
-* Make sure to source the setup.bash file (if not already done so)
+* Follow this [link](http://motion.pratt.duke.edu/klampt/#install) to install Klampt library
+
+* Make sure to source the setup.bash file on every terminal (if not already done so)
 
 `$ source /opt/ros/<distro>/setup.bash`
 
@@ -25,24 +27,34 @@ This is a ROS package used to test object manipulation on a physical Baxter usin
 
 `$ source devel/setup.bash`
 
-* Create a ROS package
+* Create a new package folder
 
-`$ cd ~/catkin_ws/src`
+`$ mkdir klampt`
 
-`$ catkin_create_pkg klampt std_msgs rospy roscpp`
+`$ cd klampt`
 
-`$ cd ~/catkin_ws`
-
-`$ catkin_make`
-
-* Add the workspace to your ROS environment
-
-`$ cd ~/catkin_ws`
-
-`$ . ~/catkin_ws/devel/setup.bash`
-
-* Clone this repository
+* Clone the files of this repository
 
 `$ git clone https://github.com/SaeedAlRahma/baxter-object-manipulation.git`
+
+* Change the line "SET(KLAMPT_ROOT /home/saeed/Klampt)" in CMakeLists.txt to the Klampt library path on your system
+
+* ~~Create a ROS package~~
+
+~~`$ cd ~/catkin_ws/src`~~
+
+~~`$ catkin_create_pkg klampt std_msgs rospy roscpp`~~
+
+~~`$ cd ~/catkin_ws`~~
+
+~~`$ catkin_make`~~
+
+* ~~Add the workspace to your ROS environment~~
+
+~~`$ cd ~/catkin_ws`~~
+
+~~`$ . ~/catkin_ws/devel/setup.bash`~~
+
+
 
 ## Run
