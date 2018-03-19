@@ -35,16 +35,17 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-# ADDED #
+#### KLAMPT ####
 include_directories(
   ${KLAMPT_INCLUDE_DIRS}
 )
 
-# ADDED #
 ADD_EXECUTABLE(MySim src/publisher.cpp)
-
-# ADDED #
 TARGET_LINK_LIBRARIES(MySim ${KLAMPT_LIBRARIES})
+ADD_EXECUTABLE(MyApp src/simple_sim.cpp)
+TARGET_LINK_LIBRARIES(MyApp ${KLAMPT_LIBRARIES})
+
+#### KLMAPT ####
 
 add_executable(robot_publisher src/robot_publisher.cpp)
 target_link_libraries(robot_publisher ${catkin_LIBRARIES})
