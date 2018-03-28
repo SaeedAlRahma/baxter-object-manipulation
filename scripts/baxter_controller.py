@@ -35,4 +35,3 @@ if __name__ == '__main__':
         baxter_controller()
     except rospy.ROSInterruptException:
         pass
-
