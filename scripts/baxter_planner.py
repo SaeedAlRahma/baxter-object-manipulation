@@ -29,8 +29,9 @@ def baxter_planner(qi, q, qSubset, settings):
     print "Creating plan..."
     #this code uses the robotplanning module's convenience functions
     robot.setConfig(qi)
+    print 'len(q)', len(q)
     plan = robotplanning.planToConfig(world,robot,q,
-                                  movingSubset='all',
+                                  movingSubset=qSubset,
                                   **settings)
 
     if plan is None:
@@ -54,8 +55,8 @@ def baxter_planner(qi, q, qSubset, settings):
         print qi
         print "and"
         print q
-        #debug some sampled configurations
-        print V[0:min(10,len(V))]
+        # #debug some sampled configurations
+        # print V[0:min(10,len(V))]
 
     """
         print "Constraint testing order:"
@@ -70,11 +71,10 @@ def baxter_planner(qi, q, qSubset, settings):
 
         print "CSpace stats:"
         print plan.space.getStats()
-
-        #to be nice to the C++ module, do this to free up memory
-        plan.space.close()
-        plan.close()
     """
+    #to be nice to the C++ module, do this to free up memory
+    plan.space.close()
+    plan.close()
 
     return path
 
@@ -111,11 +111,15 @@ print "space ", space
 
 #Generate some waypoint configurations using the resource editor
 qi = [0]*60
-q1 = list(qi); q1[38] = 0.9
-q2 = list(q1); q2[41] = -1.35
-q3 = list(q2); q3[18] = 0.9
-q4 = list(q3); q4[16] = -0.7
-configs = [qi, q1, q2, q3, q4]
+q1 = list(qi); q1[35:43] = [1.70168, 0.0, -1.34, 0.59, -1.019, 0.0, -0.96, 0.0]
+q2 = list(q1); q2[15:23] = [-0.38, 0.0, -0.74582, 1.39, 0.92, 0.0, 0.0, 0.0]
+q3 = list(q2); q3[15:23] = [-0.38, 0.0, -2.28582, 1.35, 0.92, 0.0, 0.0, 0.0]
+
+# q1 = list(qi); q1[38] = 0.9; q1[36] = -1;
+# q2 = list(q1); q2[41] = -1.35
+# q3 = list(q2); q3[18] = 0.9
+# q4 = list(q3); q4[16] = -0.7
+configs = [qi, q1, q2]#, q3]#, q4]
 print "len(configs):", len(configs)
 print "Configs:"
 for q in configs:
@@ -147,14 +151,19 @@ for i in range(len(configs)-1):
 if len(wholepath)>1:
     print "Path:"
     for q in wholepath:
-        print "  ",q
+        print "     Right Arm:", q[35:42+1]
+        print "     Left Arm:", q[15:22+1]
+        print "---------------"
     #if you want to save the path to disk, uncomment the following line
     #wholepath.save("test.path")
 
     #draw the path as a RobotTrajectory (you could just animate wholepath, but for robots with non-standard joints
     #the results will often look odd).  Animate with 5-second duration
     times = [i*5.0/(len(wholepath)-1) for i in range(len(wholepath))]
+    print "times", times
     traj = trajectory.RobotTrajectory(robot,times=times,milestones=wholepath)
+    print traj
+    print traj.interpolate(wholepath[0], wholepath[1], 10, 1)
     #show the path in the visualizer, repeating for 60 seconds
     vis.animate("robot",traj)
     vis.spin(60)
