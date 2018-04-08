@@ -12,10 +12,11 @@ from klampt.model import trajectory
 from klampt.model.collide import WorldCollider
 from klampt import *
 
-
 #settings
 KLAMPT_ROOT = "/home/saeed/Klampt"
 MODEL_DIR = "/data/robots/baxter_with_parallel_gripper_col.rob"
+WS_ROOT = "/home/saeed/catkin_ws/src/klampt"
+WORLD_DIR = "/resources/robotWorld.xml"
 
 #global
 global world
@@ -80,7 +81,8 @@ def baxter_planner(qi, q, qSubset, settings):
 
 
 #load the robot / world file
-fn = KLAMPT_ROOT + MODEL_DIR
+# fn = KLAMPT_ROOT + MODEL_DIR
+fn = WS_ROOT + WORLD_DIR
 world = WorldModel()
 res = world.readFile(fn)
 if not res:
