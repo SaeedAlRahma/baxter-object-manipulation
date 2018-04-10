@@ -5,19 +5,19 @@
     translation="0.0 0.0 -0.93"/>
 
   <!-- the table -->
-  <terrain name="Table_Leg1" file="/home/saeed/Klampt/data/terrains/cube.off"
-    scale="0.2 0.1 0.93"
-    translation="1.0 0.25 -0.93">
+  <terrain name="Table_Leg_Right" file="/home/saeed/Klampt/data/terrains/cube.off"
+    scale="0.2 0.1 0.92"
+    translation="1.0 0.5 -0.93">
      <display color="0.4 0.3 0.2"/>
   </terrain>
-  <terrain name="Table_Leg2" file="/home/saeed/Klampt/data/terrains/cube.off"
-    scale="0.2 0.1 0.93"
-    translation="1.0 -0.25 -0.93">
+  <terrain name="Table_Leg_Left" file="/home/saeed/Klampt/data/terrains/cube.off"
+    scale="0.2 0.1 0.92"
+    translation="1.0 -0.5 -0.93">
      <display color="0.4 0.3 0.2"/>
   </terrain>
   <terrain name="Table_Top" file="/home/saeed/Klampt/data/terrains/cube.off"
-    scale="0.762 1.3208 0.0352"
-    translation="0.8128 -0.6604 0.0">
+    scale="0.762 1.3208 0.035"
+    translation="0.8128 -0.6604 -0.045">
      <display color="0.4 0.3 0.2"/>
   </terrain>
 
@@ -34,20 +34,29 @@
   </terrain>
 
   <!-- Rigid Objects -->
-  <rigidObject name="block1"  position="1.1428 0.2304 0.0352">
+  <!--
+  <rigidObject name="block1"  position="1.1176 0.2304 -0.01">
      <geometry mesh="cube.off"
        scale="0.04445 0.04445 0.04445"
        translation="-0.022225 -0.022225 0.0" />
      <physics mass="0.1" automass="1" kRestitution="0" kFriction="1" kStiffness="10000" kDamping="3000" />
      <display color="1.0 0.0 0.0"/>
   </rigidObject>
-  <rigidObject name="block2"  position="1.1428 -0.2304 0.0352">
+-->
+<rigidObject name="block1"  position="1.1176 0.2254 -0.01">
+   <geometry mesh="cube.off"
+     scale="0.0381 0.0381 0.0381"
+     translation="-0.0191 -0.0191 0.0" />
+   <physics mass="0.1" automass="1" kRestitution="0" kFriction="1" kStiffness="10000" kDamping="3000" />
+   <display color="0.0 0.0 1.0"/>
+ </rigidObject>
+  <rigidObject name="block2"  position="1.1428 -0.2524 -0.01">
      <geometry mesh="cube.off"
        scale="0.0381 0.0381 0.0381"
        translation="-0.0191 -0.0191 0.0" />
      <physics mass="0.1" automass="1" kRestitution="0" kFriction="1" kStiffness="10000" kDamping="3000" />
      <display color="0.0 0.0 1.0"/>
-</rigidObject>
+   </rigidObject>
 
   <simulation>
      <object index="0">
