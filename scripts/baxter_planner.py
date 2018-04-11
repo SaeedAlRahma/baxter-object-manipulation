@@ -43,7 +43,7 @@ def baxter_planner(qi, q, qSubset, settings):
     t0 = time.time()
     plan.space.cspace.enableAdaptiveQueries(True)
     print "Planning..."
-    for round in range(100):
+    for round in range(10):
         plan.planMore(50)
     print "Planning time, 500 iterations",time.time()-t0
 
